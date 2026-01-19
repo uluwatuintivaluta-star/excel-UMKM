@@ -1,0 +1,218 @@
+# 🧭 PANDUAN PEMAKAIAN SISTEM KEUANGAN UMKM (EXCEL)
+
+Panduan ini ditujukan untuk **USER AWAM / OPERATOR TOKO**, bukan teknisi.
+Ikuti langkah **berurutan dari atas ke bawah**. Jangan lompat.
+
+---
+
+## 🎯 GAMBARAN UMUM ALUR
+
+1. Atur master (sekali di awal)
+2. Input barang masuk (setiap ada pembelian)
+3. Input penjualan (setiap transaksi)
+4. Lihat laporan stok
+5. Lihat laporan laba
+
+> ⚠️ User **TIDAK PERLU** mengubah rumus apa pun
+
+---
+
+## STEP 0️⃣ ATUR DROPDOWN & MASTER (SEKALI SAJA)
+
+### 0.1 Isi `Master_Barang`
+
+Isi daftar barang yang dijual.
+
+Kolom WAJIB:
+
+* Kode_Barang (unik, tidak boleh sama)
+* Nama_Barang
+* Satuan_Dasar (PCS / KG / LTR, dll)
+* Stok_Minimum
+
+📌 Contoh:
+
+* BR01 – Telur – PCS
+* BR02 – Gula – KG
+
+---
+
+### 0.2 Isi `Master_Konversi_Satuan`
+
+Digunakan untuk mengubah satuan jual/beli ke **unit terkecil**.
+
+Isi:
+
+* Kode_Barang
+* Satuan (Dus, Karung, Renteng, dll)
+* Konversi_ke_PCS
+* Harga_Jual
+
+📌 Contoh:
+
+* Telur – Rak – 30
+* Gula – Karung – 50
+
+---
+
+### 0.3 Cek Dropdown (Jika Sudah Disiapkan)
+
+Pastikan:
+
+* Kolom `Kode_Barang` di Barang_Masuk & Penjualan **bisa dipilih dari list**
+* Nama_Barang terisi otomatis
+
+Jika sudah → lanjut. Jika belum → minta admin setup.
+
+---
+
+## STEP 1️⃣ INPUT BARANG MASUK (PEMBELIAN)
+
+Sheet: **Barang_Masuk**
+
+Isi setiap ada pembelian barang.
+
+### Kolom yang DIISI USER:
+
+* Tanggal
+* No_Dokumen
+* Kode_Barang (pilih dari dropdown)
+* Satuan_Masuk
+* Qty_Masuk
+* Harga_Beli_per_Satuan
+* Supplier (opsional)
+
+### Kolom OTOMATIS:
+
+* Nama_Barang
+* Konversi_ke_PCS
+* Total_PCS
+* Total_Nilai_Pembelian
+
+📌 Tips:
+
+* Jangan edit kolom otomatis
+* Pastikan harga beli benar
+
+---
+
+## STEP 2️⃣ INPUT PENJUALAN
+
+Sheet: **Penjualan**
+
+Isi setiap ada transaksi jual.
+
+### Kolom yang DIISI USER:
+
+* Tanggal
+* No_Transaksi
+* Kode_Barang
+* Satuan_Jual
+* Qty_Jual
+
+### Kolom OTOMATIS:
+
+* Nama_Barang
+* Konversi_ke_PCS
+* Total_PCS
+* Harga_Jual_per_Satuan
+* Total_Penjualan
+
+📌 Tips:
+
+* Satuan jual harus sesuai Master_Konversi
+* Qty bisa pecahan (misal 0,5 karung)
+
+---
+
+## STEP 3️⃣ CEK LAPORAN STOK
+
+Sheet: **Laporan_Stok**
+
+Menampilkan:
+
+* Stok akhir per barang
+* Status stok (AMAN / MENIPIS)
+
+### Cara baca:
+
+* Stok = Total Masuk − Total Terjual
+* Stok negatif → artinya penjualan melebihi stok (perlu dicek fisik)
+
+📌 User **TIDAK MENGUBAH APA PUN** di sheet ini.
+
+---
+
+## STEP 4️⃣ CEK LAPORAN LABA
+
+Sheet: **Laporan_Laba**
+
+Menampilkan laba **per transaksi penjualan**.
+
+Kolom penting:
+
+* Total_Penjualan
+* HPP_PCS (otomatis)
+* Total_HPP
+* Laba_Kotor
+
+📌 Catatan:
+
+* Angka laba boleh desimal
+* Segitiga hijau bukan error
+
+---
+
+## STEP 5️⃣ (OPSIONAL) LIHAT RINGKASAN
+
+Jika tersedia sheet **Ringkasan_Laba**:
+
+* Total laba harian
+* Total laba bulanan
+* Total laba keseluruhan
+
+Ini hanya tampilan, **bukan input**.
+
+---
+
+## ❌ HAL YANG TIDAK BOLEH DILAKUKAN USER
+
+* Mengedit rumus
+* Menghapus kolom
+* Mengisi sheet helper (HPP)
+* Mengubah urutan kolom
+
+Jika terjadi error → hubungi admin.
+
+---
+
+## 🟢 RUTINITAS HARIAN USER
+
+1. Input Barang Masuk (jika ada)
+2. Input Penjualan
+3. Lihat Laporan Stok
+4. Lihat Laporan Laba
+
+Selesai.
+
+---
+
+## 🧠 CATATAN PENTING
+
+* Sistem ini **sengaja dibuat sederhana**
+* Tidak perlu paham akuntansi
+* Yang penting: input benar
+
+> **Kalau input benar, laporan pasti benar**
+
+---
+
+## ✅ PENUTUP
+
+Panduan ini memastikan:
+
+* User awam bisa pakai
+* Sistem tidak rusak
+* Data konsisten
+
+Dokumen ini menjadi **panduan resmi pemakaian sistem Excel UMKM**.
